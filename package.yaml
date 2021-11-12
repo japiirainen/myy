@@ -19,6 +19,8 @@ dependencies:
   - haskeline
   - containers
   - pretty
+  - text
+  - repline
 
 library:
   source-dirs: src

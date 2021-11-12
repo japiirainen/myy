@@ -24,6 +24,14 @@ library
   exposed-modules:
       Myy
   other-modules:
+      Myy.Env
+      Myy.Eval
+      Myy.Infer
+      Myy.Lexer
+      Myy.Parser
+      Myy.Pretty
+      Myy.Syntax
+      Myy.Type
       Paths_myy
   hs-source-dirs:
       src
@@ -36,6 +44,8 @@ library
     , parsec
     , pretty
     , prettyprinter
+    , repline
+    , text
     , transformers
   default-language: Haskell2010
 
@@ -55,5 +65,7 @@ executable myy
     , parsec
     , pretty
     , prettyprinter
+    , repline
+    , text
     , transformers
   default-language: Haskell2010
