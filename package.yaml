@@ -1,0 +1,33 @@
+name: myy
+version: 0.34.5
+synopsis: Lambda calculus interpreter
+description: See README at <https://github.com/japiirainen/myy#readme>
+maintainer: Joona Piirainen <joona.piirainen@gmail.com>
+github: japiirainen/myy
+category: Development
+extra-source-files:
+  - CHANGELOG.md
+
+ghc-options: -Wall
+
+dependencies:
+  - base
+  - parsec
+  - mtl
+  - prettyprinter
+  - transformers
+  - haskeline
+  - containers
+  - pretty
+
+library:
+  source-dirs: src
+  exposed-modules:
+    - Myy
+
+executable:
+  main: Main.hs
+  source-dirs: app
+  dependencies:
+    - myy
+
