@@ -13,7 +13,12 @@ ghc-options: -Wall
 dependencies:
   - base
   - parsec
+  - megaparsec
   - mtl
+  - template-haskell
+  - ansi-wl-pprint
+  - tasty
+  - tasty-hunit
   - prettyprinter
   - transformers
   - haskeline
@@ -32,4 +37,25 @@ executable:
   source-dirs: app
   dependencies:
     - myy
+
+tests:
+  tasty:
+    main: tests/Main.hs
+    source-dirs: tasty
+    dependencies:
+      - base
+      - parsec
+      - megaparsec
+      - mtl
+      - template-haskell
+      - ansi-wl-pprint
+      - tasty
+      - tasty-hunit
+      - prettyprinter
+      - transformers
+      - haskeline
+      - containers
+      - pretty
+      - text
+      - repline
 

@@ -4,68 +4,96 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 
-name:           myy
-version:        0.34.5
-synopsis:       Lambda calculus interpreter
-description:    See README at <https://github.com/japiirainen/myy#readme>
-category:       Development
-homepage:       https://github.com/japiirainen/myy#readme
-bug-reports:    https://github.com/japiirainen/myy/issues
-maintainer:     Joona Piirainen <joona.piirainen@gmail.com>
-build-type:     Simple
+name:               myy
+version:            0.34.5
+synopsis:           Lambda calculus interpreter
+description:        See README at <https://github.com/japiirainen/myy#readme>
+category:           Development
+homepage:           https://github.com/japiirainen/myy#readme
+bug-reports:        https://github.com/japiirainen/myy/issues
+maintainer:         Joona Piirainen <joona.piirainen@gmail.com>
+build-type:         Simple
 extra-source-files:
-    CHANGELOG.md
+      CHANGELOG.md
 
 source-repository head
-  type: git
-  location: https://github.com/japiirainen/myy
+    type: git
+    location: https://github.com/japiirainen/myy
 
 library
-  exposed-modules:
-      Myy
-  other-modules:
-      Myy.Env
-      Myy.Eval
-      Myy.Infer
-      Myy.Lexer
-      Myy.Parser
-      Myy.Pretty
-      Myy.Syntax
-      Myy.Type
-      Paths_myy
-  hs-source-dirs:
-      src
-  ghc-options: -Wall
-  build-depends:
-      base
-    , containers
-    , haskeline
-    , mtl
-    , parsec
-    , pretty
-    , prettyprinter
-    , repline
-    , text
-    , transformers
-  default-language: Haskell2010
+    exposed-modules:
+          Myy
+    other-modules:
+          Paths_myy
+    hs-source-dirs:
+          src
+    ghc-options: -Wall
+    build-depends:
+          ansi-wl-pprint
+        , base
+        , containers
+        , haskeline
+        , megaparsec
+        , mtl
+        , parsec
+        , pretty
+        , prettyprinter
+        , repline
+        , tasty
+        , tasty-hunit
+        , template-haskell
+        , text
+        , transformers
+    default-language: Haskell2010
 
 executable myy
-  main-is: Main.hs
-  other-modules:
-      Paths_myy
-  hs-source-dirs:
-      app
-  ghc-options: -Wall
-  build-depends:
-      base
-    , containers
-    , haskeline
-    , mtl
-    , myy
-    , parsec
-    , pretty
-    , prettyprinter
-    , repline
-    , text
-    , transformers
-  default-language: Haskell2010
+    main-is: Main.hs
+    other-modules:
+          Paths_myy
+    build-depends:
+          ansi-wl-pprint
+        , base
+        , containers
+        , haskeline
+        , megaparsec
+        , mtl
+        , myy
+        , parsec
+        , pretty
+        , prettyprinter
+        , repline
+        , tasty
+        , tasty-hunit
+        , template-haskell
+        , text
+        , transformers
+    hs-source-dirs:
+          app
+    ghc-options: -Wall
+    default-language: Haskell2010
+
+test-suite tasty
+    type: exitcode-stdio-1.0
+    main-is: tests/Main.hs
+    other-modules:
+          Paths_myy
+    hs-source-dirs:
+          tasty
+    ghc-options: -Wall
+    build-depends:
+          ansi-wl-pprint
+        , base
+        , containers
+        , haskeline
+        , megaparsec
+        , mtl
+        , parsec
+        , pretty
+        , prettyprinter
+        , repline
+        , tasty
+        , tasty-hunit
+        , template-haskell
+        , text
+        , transformers
+    default-language: Haskell2010

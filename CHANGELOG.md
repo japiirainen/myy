@@ -1,4 +1,4 @@
-# Revision history for lambdaCalculus
+# Revision history for myy
 
 ## 0.1.0.0 -- YYYY-mm-dd
 
