@@ -24,6 +24,14 @@ library
     exposed-modules:
           Myy
     other-modules:
+          Myy.Exp
+          Myy.Globals
+          Myy.Lex
+          Myy.Monad
+          Myy.Pretty
+          Myy.Token
+          Myy.Type
+          Myy.Util
           Paths_myy
     hs-source-dirs:
           src
