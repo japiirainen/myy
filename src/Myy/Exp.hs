@@ -3,6 +3,7 @@
 {-# LANGUAGE PolyKinds     #-}
 {-# LANGUAGE TypeFamilies  #-}
 {-# LANGUAGE TypeOperators #-}
+{-# OPTIONS_GHC -Wno-name-shadowing #-}
 -- | The Exp GADT, Myy expressions encode in an `Exp` value are
 --   *always* well-typed
 
@@ -105,7 +106,6 @@ instance MyyVal ty => PrettyExp (Val ty) where
      `MyyVal` instance needed to construct the `PrettyExp` instance
 -}
 prettyVal :: Val t -> STy t -> Doc
-prettyVal val SIntTy       = pretty val
 prettyVal val SIntTy       = pretty val
 prettyVal val SBoolTy      = pretty val
 prettyVal val (_ `SArr` _) = pretty val
