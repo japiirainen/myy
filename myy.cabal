@@ -31,6 +31,9 @@ library
           Myy.Token
           Myy.Type
           Myy.Util
+          Myy.Parse
+          Myy.Statement
+          Myy.Unchecked
     other-modules:
           Paths_myy
     hs-source-dirs:
@@ -86,6 +89,7 @@ test-suite tasty
     other-modules:
           Tests.Lex
           Tests.Util
+          Tests.Parse
     hs-source-dirs:
           tasty
     ghc-options: -Wall

@@ -39,6 +39,9 @@ library:
     - Myy.Token
     - Myy.Type
     - Myy.Util
+    - Myy.Parse
+    - Myy.Statement
+    - Myy.Unchecked
 
 executable:
   main: Main.hs
@@ -53,6 +56,7 @@ tests:
     other-modules:
       - Tests.Lex
       - Tests.Util
+      - Tests.Parse
     dependencies:
       - base
       - myy
