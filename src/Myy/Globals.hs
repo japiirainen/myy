@@ -2,6 +2,7 @@
 {-# LANGUAGE FlexibleContexts #-}
 {-# LANGUAGE GADTs            #-}
 {-# LANGUAGE RankNTypes       #-}
+{-# OPTIONS_GHC -Wno-name-shadowing #-}
 -- Manages the global variables in Myy
 
 module Myy.Globals
