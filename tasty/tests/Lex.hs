@@ -1,24 +1,26 @@
 module Tests.Lex where
 
-import Myy.Lex
-import Myy.Token
-import Test.Util
+import           Myy.Lex
+import           Myy.Token
+import           Tests.Util
 
-import Prelude hiding (lex)
+import           Prelude       hiding (lex)
 
-import Data.List as List
-import Control.Arrow as Arrow (right)
+import           Control.Arrow as Arrow (right)
+import           Data.List     as List
 
 lexTestCases :: [(String, [Token])]
 lexTestCases = [ ("", [])
-			   , (" ", [])
-			   , (" {- hi -} \n  ", [])
-			   , (" {----} ", [])
-			   , (" {- foo {- blah -} blah -} ", [])
+               , (" ", [])
+               , (" {- hi -}  \n  ", [])
+               , (" {----} ", [])
+               , (" {- foo {- bar -} blah -}", [])
+               , (" {- foo {-- bar -}-}", [])
+               , ("{- blah ---}", [])
                , ("{- froggle -} -- blah", [])
-			   , ("x", [Name "x"])
-			   , ("(()", [LParen, LParen, RParen])
-			                  , ("++--++", [ArithOp uPlus, ArithOp uPlus])
+               , ("x", [Name "x"])
+               , ("(()", [LParen, LParen, RParen])
+               , ("++--++", [ArithOp uPlus, ArithOp uPlus])
                , ("->->", [Arrow, Arrow])
                , ("45+332-89/1*3%xyz", [ Int 45, ArithOp uPlus, Int 332
                                        , ArithOp uMinus, Int 89, ArithOp uDivide
@@ -31,11 +33,11 @@ lexTestCases = [ ("", [])
                , (":\\", [Colon, Lambda])
                , (">>==<===<", [ ArithOp uGreater, ArithOp uGreaterE, Assign
                                , ArithOp uLessE, ArithOp uEquals, ArithOp uLess ])
-			   ]
+               ]
 
 lexTests :: TestTree
 lexTests = testGroup "Lexer" $
-	List.map ((\str, out) -> testCase ("`" ++ str ++ "'") $
-							 Arrow.right (List.map unLoca)
-										  (lex str @?= Right out))
-			 lexTestCases
+  List.map (\(str, out) -> testCase ("`" ++ str ++ "'") $
+                            Arrow.right (List.map unLoc)
+                                          (lex str) @?= Right out)
+           lexTestCases

@@ -31,6 +31,14 @@ library:
   source-dirs: src
   exposed-modules:
     - Myy
+    - Myy.Lex
+    - Myy.Exp
+    - Myy.Globals
+    - Myy.Monad
+    - Myy.Pretty
+    - Myy.Token
+    - Myy.Type
+    - Myy.Util
 
 executable:
   main: Main.hs
@@ -42,8 +50,12 @@ tests:
   tasty:
     main: tests/Main.hs
     source-dirs: tasty
+    other-modules:
+      - Tests.Lex
+      - Tests.Util
     dependencies:
       - base
+      - myy
       - parsec
       - megaparsec
       - mtl

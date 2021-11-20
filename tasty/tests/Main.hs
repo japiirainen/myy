@@ -1,4 +1,11 @@
 module Main where
 
+import           Test.Tasty
+
+import           Tests.Lex
+
+allTests :: TestTree
+allTests = testGroup "Top" [lexTests]
+
 main :: IO ()
-main = print "Hello from tests"
+main = defaultMain allTests

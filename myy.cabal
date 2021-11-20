@@ -23,15 +23,15 @@ source-repository head
 library
     exposed-modules:
           Myy
-    other-modules:
+          Myy.Lex
           Myy.Exp
           Myy.Globals
-          Myy.Lex
           Myy.Monad
           Myy.Pretty
           Myy.Token
           Myy.Type
           Myy.Util
+    other-modules:
           Paths_myy
     hs-source-dirs:
           src
@@ -84,7 +84,8 @@ test-suite tasty
     type: exitcode-stdio-1.0
     main-is: tests/Main.hs
     other-modules:
-          Paths_myy
+          Tests.Lex
+          Tests.Util
     hs-source-dirs:
           tasty
     ghc-options: -Wall
@@ -95,6 +96,7 @@ test-suite tasty
         , haskeline
         , megaparsec
         , mtl
+        , myy
         , parsec
         , pretty
         , prettyprinter
