@@ -60,7 +60,7 @@ instance MyyM Myy where
 
 instance MyyM MyyE where
   printDoc = MyyE . lift . printDoc
-  printLine = MyyE . lift . printDoc
+  printLine = MyyE . lift . printLine
 
   -- | Prompt the user for input, returning a string if one is entered
   --   Like `getInputLine`
