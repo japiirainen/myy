@@ -1,8 +1,8 @@
-module Tests.Lex where
+module Lex where
 
 import           Myy.Lex
 import           Myy.Token
-import           Tests.Util
+import           Util
 
 import           Prelude       hiding (lex)
 

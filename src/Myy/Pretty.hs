@@ -23,11 +23,11 @@ import           Myy.Util
 import           Text.PrettyPrint.ANSI.Leijen
 
 lamPrec, appPrec, appLeftPrec, appRightPrec, ifPrec :: Prec
-lamPrec      = 1
-appPrec      = 9
-appLeftPrec  = 8.9
+lamPrec = 1
+appPrec = 9
+appLeftPrec = 8.9
 appRightPrec = 9
-ifPrec       = 1
+ifPrec = 1
 
 opPrec, opLeftPrec, opRightPrec :: ArithOp ty -> Prec
 opPrec      (precInfo -> (x, _, _)) = x
@@ -39,7 +39,7 @@ precInfo :: ArithOp ty -> (Prec, Prec, Prec)
 precInfo Plus     = (5, 4.9, 5)
 precInfo Minus    = (5, 4.9, 5)
 precInfo Times    = (6, 5.9, 6)
-precInfo Divide   = (6, 6.9, 6)
+precInfo Divide   = (6, 5.9, 6)
 precInfo Mod      = (6, 5.9, 6)
 precInfo Less     = (4, 4, 4)
 precInfo LessE    = (4, 4, 4)
@@ -47,16 +47,15 @@ precInfo Greater  = (4, 4, 4)
 precInfo GreaterE = (4, 4, 4)
 precInfo Equals   = (4, 4, 4)
 
--- | A function that changes a `Doc`s color
+-- | A function that changes a 'Doc's color
 type ApplyColor = Doc -> Doc
 
--- | Information about coloring in de Brujin indexes and binders
+-- | Information about coloring in de Bruijn indexes and binders
 data Coloring = Coloring [ApplyColor]
-                         -- ^ a stream of remaining colors to use
-                         [ApplyColor]
-                         -- ^ and colors used for bound variables
+                         [ApplyColor]  -- ^ a stream of remaining colors to use,
+                                       -- and the colors used for bound variables
 
--- | A `Coloring` for an empty context
+-- | A 'Coloring' for an empty context
 defaultColoring :: Coloring
 defaultColoring = Coloring all_colors []
   where
@@ -67,7 +66,7 @@ defaultColoring = Coloring all_colors []
 class Pretty exp => PrettyExp exp where
   prettyExp :: Coloring -> Prec -> exp -> Doc
 
-  -- | Convinient implementation of `pretty`
+-- | Convenient implementation of 'pretty'
 defaultPretty :: PrettyExp exp => exp -> Doc
 defaultPretty = nest 2 . prettyExp defaultColoring topPrec
 
@@ -81,8 +80,7 @@ prettyLam (Coloring (next : supply) existing) prec m_ty body
   = maybeParens (prec >= lamPrec) $
     fillSep [ char 'λ' <> next (char '#') <>
               maybe empty (\ty -> text ":" <> pretty ty) m_ty <> char '.'
-            , prettyExp (Coloring supply (next : existing)) topPrec body
-            ]
+            , prettyExp (Coloring supply (next : existing)) topPrec body ]
 prettyLam _ _ _ _ = error "Infinite supply of colors ran out"
 
 -- | Print an application
@@ -90,18 +88,16 @@ prettyApp :: (PrettyExp exp1, PrettyExp exp2)
           => Coloring -> Prec -> exp1 -> exp2 -> Doc
 prettyApp coloring prec e1 e2
   = maybeParens (prec >= appPrec) $
-    fillSep [ prettyExp coloring appLeftPrec e1
-            , prettyExp coloring appRightPrec e2
-            ]
+    fillSep [ prettyExp coloring appLeftPrec  e1
+            , prettyExp coloring appRightPrec e2 ]
 
--- | Print an arithmeric expression
+-- | Print an arithemtic expression
 prettyArith :: (PrettyExp exp1, PrettyExp exp2)
             => Coloring -> Prec -> exp1 -> ArithOp ty -> exp2 -> Doc
 prettyArith coloring prec e1 op e2
   = maybeParens (prec >= opPrec op) $
     fillSep [ prettyExp coloring (opLeftPrec op) e1 <+> pretty op
-            , prettyExp coloring (opRightPrec op) e2
-            ]
+            , prettyExp coloring (opRightPrec op) e2 ]
 
 -- | Print a conditional
 prettyIf :: (PrettyExp exp1, PrettyExp exp2, PrettyExp exp3)

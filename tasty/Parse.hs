@@ -1,9 +1,9 @@
-module Tests.Parse where
+module Parse where
 
 import           Myy.Lex
 import           Myy.Parse
 import           Myy.Util
-import           Tests.Util
+import           Util
 
 import           Prelude                      hiding (lex)
 

@@ -1,7 +1,9 @@
 {-# LANGUAGE TemplateHaskell #-}
+{-# OPTIONS_GHC -Wno-orphans #-}
+{-# OPTIONS_GHC -Wno-name-shadowing #-}
 -- | Utility definitions for testing myy
 
-module Tests.Util
+module Util
   ( module Test.Tasty
   , testCase
   , (@?=)

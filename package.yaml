@@ -42,6 +42,8 @@ library:
     - Myy.Parse
     - Myy.Statement
     - Myy.Unchecked
+    - Myy.Check
+    - Myy.Eval
 
 executable:
   main: Main.hs
@@ -51,12 +53,9 @@ executable:
 
 tests:
   tasty:
-    main: tests/Main.hs
+    main: Main.hs
     source-dirs: tasty
-    other-modules:
-      - Tests.Lex
-      - Tests.Util
-      - Tests.Parse
+
     dependencies:
       - base
       - myy

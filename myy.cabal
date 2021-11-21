@@ -34,7 +34,10 @@ library
           Myy.Parse
           Myy.Statement
           Myy.Unchecked
+          Myy.Check
+          Myy.Eval
     other-modules:
+          Myy.Shift
           Paths_myy
     hs-source-dirs:
           src
@@ -85,11 +88,13 @@ executable myy
 
 test-suite tasty
     type: exitcode-stdio-1.0
-    main-is: tests/Main.hs
+    main-is: Main.hs
     other-modules:
-          Tests.Lex
-          Tests.Util
-          Tests.Parse
+          Check
+          Lex
+          Parse
+          Util
+          Paths_myy
     hs-source-dirs:
           tasty
     ghc-options: -Wall
