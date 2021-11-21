@@ -1,5 +1,7 @@
 module Myy where
 
+import           Myy.Repl
+
 main :: IO ()
-main = print "hello from myy"
+main = repl
 

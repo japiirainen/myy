@@ -26,6 +26,7 @@ dependencies:
   - pretty
   - text
   - repline
+  - directory
 
 library:
   source-dirs: src
@@ -44,6 +45,7 @@ library:
     - Myy.Unchecked
     - Myy.Check
     - Myy.Eval
+    - Myy.Repl
 
 executable:
   main: Main.hs

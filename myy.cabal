@@ -36,6 +36,7 @@ library
           Myy.Unchecked
           Myy.Check
           Myy.Eval
+          Myy.Repl
     other-modules:
           Myy.Shift
           Paths_myy
@@ -46,6 +47,7 @@ library
           ansi-wl-pprint
         , base
         , containers
+        , directory
         , haskeline
         , megaparsec
         , mtl
@@ -68,6 +70,7 @@ executable myy
           ansi-wl-pprint
         , base
         , containers
+        , directory
         , haskeline
         , megaparsec
         , mtl
@@ -102,6 +105,7 @@ test-suite tasty
           ansi-wl-pprint
         , base
         , containers
+        , directory
         , haskeline
         , megaparsec
         , mtl
